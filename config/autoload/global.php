@@ -9,7 +9,7 @@
  *
  * NOTE: In practice, this file will typically be INCLUDED in your source
  * control, so do not include passwords or other sensitive information in this
- * file.
+ * file. ** They should be in the /config/autoload/local.php file, which will not be **
  */
 
 declare(strict_types=1);
@@ -19,18 +19,23 @@ use Laminas\Session\Storage\SessionArrayStorage;
 use Laminas\Session\Validator\HttpUserAgent;
 use Laminas\Session\Validator\RemoteAddr;
 
-// adjiust your settings here or you can pass a custom config class that extends the SessionConfig class
+// adjust your settings here or you can pass a custom config class that extends the SessionConfig / StandardConfig class
 return [
-    'session_manager'    => [
-        'enable_default_container_manager' => true,
+    'session_manager' => [
+        'enable_default_container_manager' => true, // makes life simple
     ],
+    /**
+     * Important note here, while setting this up and testing I noticed that the laminas-hidden
+     * cookie either has an incorrect or not set samesite value, I will update this example
+     * when I have time to figure out why.
+     */
     'session_config'     => [
-        'use_cookies'         => true,
-        'gc_maxlifetime'      => 86400 * 14,
-        'remember_me_seconds' => 86400 * 14,
+        'use_cookies'         => true, // I mean who doesn't like cookies?
+        'gc_maxlifetime'      => 86400,
+        'remember_me_seconds' => 86400, // Can be safely set or changed after the session has been started
         'cookie_httponly'     => true,
-        'cookie_samesite'     => 'Strict',
-        'cookie_secure'       => false,
+        'cookie_samesite'     => 'Lax', // 'Strict', 'Lax' or 'None', going with the default here...
+        'cookie_secure'       => false, // Since I use a localhost that is not localhost, I set this to false
     ],
     'session_containers' => [
         Container::class,
@@ -38,7 +43,7 @@ return [
     'session_storage'    => [
         'type' => SessionArrayStorage::class,
     ],
-    'session_validators' => [
+    'session_validators' => [ // validation is great :)
         RemoteAddr::class,
         HttpUserAgent::class,
     ],

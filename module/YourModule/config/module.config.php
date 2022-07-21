@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-use Laminas\Session\SaveHandler\SaveHandlerInterface;
+use Laminas\Session\SaveHandler\SaveHandlerInterface; // this is what the autowiring is looking for as a service name or alias
 use YourModule\Session\SavehandlerFactory;
 
 return [
