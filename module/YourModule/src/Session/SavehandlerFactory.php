@@ -25,7 +25,8 @@ final class SaveHandlerFactory implements FactoryInterface
      * - the first argument to the TableGateway constructor is the table name. The second is the adapter.
      *
      * - Its important to note here that the AdapterInterface relies on a top level config key of 'db'
-     * which should be in the $root/config/autoload/local.php file.
+     * which should be in the $root/config/autoload/local.php file. I assume that anyone reading this
+     * has already setup an adapter, if not please just open an issue.
      *
      * {@inheritdoc}
      */
