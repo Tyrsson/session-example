@@ -14,12 +14,6 @@ final class Module
 {
     /**
      * Fires 1st
-     * This is an example of how we can manipulate the application configuration
-     * just after its merged from all modules and just prior to it being
-     * passed to the service manager. Its important to note that the order in which
-     * the listeners will have access is determined by the priority that its assigned.
-     * The default priority is 1. please see the following doc for more infromation:
-     * https://docs.laminas.dev/tutorials/advanced-config/#manipulating-merged-configuration
      */
     public function init(ModuleManager $modulemanager): void
     {
@@ -67,15 +61,7 @@ final class Module
     {
         // get an instance of the service manager
         $serviceManager = $e->getApplication()->getServiceManager();
-        /**
-         * This initializes the session manager and the saveHandler, which basically is what
-         * executes your SaveHandlerFactory class.
-         * Without this call the saveHandler will not be initialized and passed to the
-         * session manager. Its backed by the DI container so it can be configured by the
-         * ConfigProvider.
-         * It also occurs to me this should really not be needed, but it appears that it is.
-         * I will do some research on this and update the example if needed.
-         */
+        // If this call is not made then the saveHandler is not picked up
         $session = $serviceManager->get(SessionManager::class);
         // not to be confused with the Psr | serviceManager container
         $container          = $serviceManager->get(Container::class);
