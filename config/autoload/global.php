@@ -21,20 +21,11 @@ use Laminas\Session\Validator\RemoteAddr;
 
 // adjust your settings here or you can pass a custom config class that extends the SessionConfig / StandardConfig class
 return [
-    'session_manager' => [
-        'enable_default_container_manager' => true, // makes life simple
-    ],
-    /**
-     * Important note here, while setting this up and testing I noticed that the laminas-hidden
-     * cookie either has an incorrect or not set samesite value, I will update this example
-     * when I have time to figure out why.
-     */
     'session_config'     => [
         'use_cookies'         => true, // I mean who doesn't like cookies?
         'gc_maxlifetime'      => 86400,
         'remember_me_seconds' => 86400, // Can be safely set or changed after the session has been started
         'cookie_httponly'     => true,
-        'cookie_samesite'     => 'Lax', // 'Strict', 'Lax' or 'None', going with the default here...
         'cookie_secure'       => false, // Since I use a localhost that is not localhost, I set this to false
     ],
     'session_containers' => [
