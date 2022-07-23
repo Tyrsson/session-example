@@ -8,7 +8,6 @@ use Laminas\ModuleManager\ModuleEvent;
 use Laminas\ModuleManager\ModuleManager;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Session\Container;
-use Laminas\Session\SessionManager;
 
 final class Module
 {
@@ -53,18 +52,6 @@ final class Module
     /** Fires 4th */
     public function onBootstrap(MvcEvent $e): void
     {
-        $this->bootstrapSession($e);
-    }
-
-    /** Fires 5th */
-    public function bootstrapSession(MvcEvent $e): void
-    {
-        // get an instance of the service manager
-        $serviceManager = $e->getApplication()->getServiceManager();
-        // If this call is not made then the saveHandler is not picked up
-        $session = $serviceManager->get(SessionManager::class);
-        // not to be confused with the Psr | serviceManager container
-        $container          = $serviceManager->get(Container::class);
-        $container->someVar = 'someValue'; // this is how you can set a value in the session container
+        $e->getApplication()->getServiceManager()->get(Container::class);
     }
 }
