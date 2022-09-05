@@ -21,7 +21,7 @@ return [
         'cookie_secure'       => false, // Example only
     ],
     'session_containers' => [
-        DefaultContainer::class,
+        DefaultContainer::class, // default container $sessionContainer = $container->get(DefaultContainer::class); Laminas\Session\Container
         /**
          * This will setup a custom container that can be called from the service manager
          * $sessionContainer = $container->get(Container::class) service name will be YourModule\Session\Container
