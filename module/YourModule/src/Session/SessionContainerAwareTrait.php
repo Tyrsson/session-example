@@ -9,15 +9,15 @@ use YourModule\Session\Container;
 trait SessionContainerAwareTrait
 {
     /** @var Container $sessionContainer */
-    protected $sessionContainer;
+    protected $session;
 
     public function setSessionContainer(Container $container)
     {
-        $this->sessionContainer = $container;
+        $this->session = $container;
     }
 
     public function getSessionContainer(): Container
     {
-        return $this->sessionContainer;
+        return $this->session;
     }
 }
