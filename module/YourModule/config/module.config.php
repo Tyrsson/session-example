@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Laminas\Session\Config\ConfigInterface;
+use Laminas\Session\Container as DefaultContainer;
 use Laminas\Session\SaveHandler\SaveHandlerInterface; // this is what the autowiring is looking for as a service name or alias
 use Laminas\Session\SessionManager;
 use Laminas\Session\Storage\SessionArrayStorage;
@@ -20,10 +21,10 @@ return [
         'cookie_secure'       => false, // Example only
     ],
     'session_containers' => [
+        DefaultContainer::class,
         /**
          * This will setup a custom container that can be called from the service manager
          * $sessionContainer = $container->get(Container::class) service name will be YourModule\Session\Container
-         * Which makes a total of 2 containers, since the global.php file passed Laminas\Session\Container
          */
         Container::class,
         /**
