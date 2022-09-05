@@ -26,6 +26,13 @@ return [
          * Which makes a total of 2 containers, since the global.php file passed Laminas\Session\Container
          */
         Container::class,
+        /**
+         * You can also pass a string name and the AbstractContainerFactory will create a container with
+         * that name passed and it can be retrieved from the service manager by the string name
+         * like calling an alias
+         * $sessionContainer = $container->get('YourModule_Context');
+         */
+        'YourModule_Context',
     ],
     'session_storage'    => [
         'type' => SessionArrayStorage::class, // if youre Unit, Integration testing you may want to set this to ArrayStorage
