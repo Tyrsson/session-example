@@ -49,7 +49,7 @@ return [
         'factories' => [
             ConfigInterface::class      => Session\ConfigFactory::class,
             Session\Container::class    => Session\ContainerFactory::class,
-            SaveHandlerInterface::class => SaveHandlerFactory::class,
+            //SaveHandlerInterface::class => SaveHandlerFactory::class, // <- uncomment this if you want to use db driven sessions
         ],
     ],
     'session_save_handler_options' => [ // option to db table column map

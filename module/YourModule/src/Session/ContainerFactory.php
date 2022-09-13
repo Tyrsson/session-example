@@ -11,7 +11,7 @@ use Psr\Container\ContainerInterface;
 
 class ContainerFactory implements FactoryInterface
 {
-    /** @param string $requestedName*/
+    /** @param string $requestedName */
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): Container
     {
         return new $requestedName('YourModule_Context', $container->get(SessionManager::class));
